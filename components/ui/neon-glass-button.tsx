@@ -49,7 +49,7 @@ export function NeonGlassButton({
             </span>
 
             {/* Glassmorphism fill */}
-            <span className="absolute inset-[1px] rounded-[11px] bg-gradient-to-br from-white/[0.12] via-white/[0.05] to-transparent backdrop-blur-2xl" />
+            <span className="absolute inset-px rounded-[11px] bg-linear-to-br from-white/12 via-white/5 to-transparent backdrop-blur-2xl" />
 
             {/* Cursor-tracking glare highlight */}
             <span
@@ -60,7 +60,7 @@ export function NeonGlassButton({
             />
 
             {/* Outer glow */}
-            <span className="absolute -inset-1 rounded-2xl opacity-50 group-hover:opacity-80 blur-lg transition-opacity duration-300 bg-gradient-to-r from-purple-600/40 via-pink-500/30 to-purple-600/40 pointer-events-none" />
+            <span className="absolute -inset-1 rounded-2xl opacity-50 group-hover:opacity-80 blur-lg transition-opacity duration-300 bg-linear-to-r from-purple-600/40 via-pink-500/30 to-purple-600/40 pointer-events-none" />
 
             {/* Content */}
             <span className="relative z-10 flex items-center gap-2 drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]">
