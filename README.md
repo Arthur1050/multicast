@@ -1,92 +1,140 @@
-# Multicast
+# 🎬 Multicast
 
-Multicast e uma plataforma de streaming social focada em sessoes sincronizadas, presenca em tempo real e controle compartilhado de reproducao.
+> **Assista junto. Nao importa a distancia.**
 
-Este repositorio ainda nao representa a aplicacao final completa. Hoje ele funciona como a base visual e tecnica do produto: um design system dark-first, com showcase interno, primitives reutilizaveis e os primeiros compostos de dominio para fluxos de watch party.
+Multicast e uma experiencia de streaming social criada para transformar uma simples sessao de filme, serie ou evento em algo compartilhado, sincronizado e vivo.
 
-Referencia de posicionamento do produto: https://multicast-sales-page.vercel.app/
+Aqui, assistir nao e uma atividade solitaria.  
+E cinema virtual com amigos, salas privadas, presenca em tempo real, controle compartilhado e uma interface pensada para fazer a experiencia parecer especial desde o primeiro clique.
 
-## O que existe hoje
+## ✨ A proposta
 
-- uma vitrine interna em `app/page.tsx` para validar tokens, primitives, overlays e compostos
-- fundacao de componentes interativos baseada em `shadcn/ui` + Radix
-- identidade visual propria do Multicast por cima dessa base
-- documentacao interna em `docs/design-system/` guiando design, comportamento e implementacao
+O Multicast nasce da ideia de que entretenimento fica melhor quando e vivido em grupo.
 
-## Visao do produto
+Em vez de:
 
-O Multicast foi pensado para experiencias de entretenimento compartilhado. A interface precisa deixar claro:
+- mandar mensagem perguntando "deu play?"
+- tentar sincronizar manualmente
+- perder o contexto de quem entrou, saiu ou pausou
+- dividir a atencao entre varias ferramentas
 
-- qual e o estado da sessao
-- o que esta sendo reproduzido
-- quem esta presente
-- quem controla a experiencia
-- como a comunicacao contextual acontece sem competir com a midia
+o Multicast concentra tudo em uma experiencia so:
 
-Na pratica, isso se traduz em pilares como:
+- 🎞️ reproducao sincronizada
+- 🫂 presenca social visivel
+- 🔐 salas privadas ou publicas
+- 🎛️ controle compartilhado
+- 💬 comunicacao contextual em tempo real
 
-- sincronizacao de playback
-- salas privadas ou publicas
-- presenca social
-- moderacao e permissao de controle
-- chat e contexto em tempo real
+## 🚀 O que este repositorio representa
 
-## Estado atual do repositorio
+Este repositorio ainda nao e a aplicacao final completa do produto.
 
-Este projeto esta na fase de consolidacao da base do sistema.
+Hoje ele funciona como a **base visual e tecnica do Multicast**:
 
-Ja implementado:
+- uma vitrine interna do design system
+- a fundacao dos componentes da plataforma
+- os primeiros blocos de interface para fluxos de watch party
+- a linguagem visual que vai sustentar as futuras telas reais do produto
 
-- tokens globais em `app/globals.css`
-- tipografia global em `app/layout.tsx`
-- primitives em `components/ui/*.tsx`
-- wrappers publicos e compostos em `components/*.tsx`
-- utilitarios de classe em `lib/cn.ts` e `lib/utils.ts`
+Em outras palavras: este projeto e o alicerce da experiencia.
 
-Ainda planejado:
+## 🌌 Direcao visual
 
-- command menu
-- pagination
-- table
+O Multicast segue uma direcao **dark-first, cinematica e imersiva**.
+
+A interface foi desenhada para equilibrar:
+
+- clareza de produto
+- atmosfera emocional
+- densidade de informacao
+- consistencia de comportamento
+
+Nao e apenas um conjunto de componentes bonitos.  
+A intencao aqui e construir uma interface que pareca, ao mesmo tempo:
+
+- premium
+- viva
+- social
+- controlada
+- pronta para playback, moderacao e presenca
+
+## 🧩 O que voce encontra aqui
+
+### Primitives da interface
+
+A base atual ja cobre componentes essenciais como:
+
+- buttons
+- inputs
+- textarea
+- select
+- switch
+- checkbox
+- tabs
+- dropdowns
+- tooltip
+- modal
+- avatar
+- field
+
+### Componentes de dominio inicial
+
+Tambem ja existem compostos pensados para o universo do produto:
+
+- `MediaCard`
+- `RoomCard`
+- `ParticipantStrip`
+- `StatCard`
+- `EmptyState`
+
+Esses componentes ajudam a validar a linguagem do Multicast em cenarios mais proximos do uso real.
+
+## 💡 Diferenciais da base atual
+
+Mesmo sendo uma base em evolucao, este projeto ja foi estruturado para evitar os problemas classicos de interfaces inconsistentes:
+
+- hover e focus previsiveis
+- feedback visual de clique
+- estados mais robustos
+- overlays e menus mais consistentes
+- primitives interativos apoiados em `shadcn/ui` + Radix
+- identidade visual propria aplicada por tokens semanticos
+
+Ou seja: a fundacao foi pensada para escalar sem virar um conjunto de excecoes visuais.
+
+## 🛣️ Para onde isso vai
+
+Os proximos passos naturais do projeto incluem levar essa base para fluxos reais como:
+
+- autenticacao
+- lobby
+- descoberta de conteudo
+- salas sincronizadas
+- moderacao
+- billing
+
+Tambem faz parte do caminho expandir componentes como:
+
 - chat bubble
 - queue item
 - playback toolbar
+- command menu
+- tabelas e estruturas de apoio
 
-## Stack
+## 🖼️ Posicionamento do produto
 
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS v4
-- `shadcn/ui`
-- Radix UI
-- `class-variance-authority`
-- `clsx`
-- `tailwind-merge`
-- `lucide-react`
+Se quiser ver a linguagem mais comercial da ideia, a sales page esta aqui:
 
-## Estrutura do projeto
+👉 https://multicast-sales-page.vercel.app/
 
-```text
-app/
-  layout.tsx
-  page.tsx
-  globals.css
-components/
-  ui/          # primitives baseados em shadcn/ui + Radix
-  *.tsx        # wrappers publicos e compostos de dominio
-docs/
-  design-system/
-lib/
-  cn.ts
-  utils.ts
-```
+## 🧪 Rodando localmente
 
-## Como rodar
+Se voce quiser explorar a base no seu ambiente:
 
 ### Requisitos
 
-- Node.js 20+ recomendado
+- Node.js 20+
 - pnpm
 
 ### Instalacao
@@ -95,106 +143,53 @@ lib/
 pnpm install
 ```
 
-### Ambiente de desenvolvimento
+### Desenvolvimento
 
 ```bash
 pnpm dev
 ```
 
-Abra `http://localhost:3000`.
+Depois abra:
 
-### Scripts disponiveis
-
-```bash
-pnpm dev
-pnpm build
-pnpm start
-pnpm lint
+```text
+http://localhost:3000
 ```
 
-## Como a UI esta organizada
+## 📚 Documentacao interna
 
-### 1. Foundation
+As regras de design e implementacao ficam em:
 
-Em `components/ui/*.tsx` ficam os primitives que cuidam de comportamento e acessibilidade:
+```text
+docs/design-system/
+```
 
-- button
-- input
-- textarea
-- checkbox
-- switch
-- select
-- dropdown menu
-- dialog
-- tabs
-- tooltip
-- avatar
-- field
-
-Essa camada existe para evitar inconsistencia de detalhes pequenos como:
-
-- hover
-- focus-visible
-- active
-- selected
-- disabled
-- feedback de clique
-- comportamento de overlays e menus
-
-### 2. API publica do design system
-
-Em `components/*.tsx` ficam:
-
-- wrappers que adaptam a ergonomia do projeto para a base `shadcn/ui`
-- primitives consumidos diretamente pela aplicacao
-- compostos de dominio como `MediaCard`, `RoomCard`, `ParticipantStrip` e `StatCard`
-
-### 3. Tokens e identidade visual
-
-A aparencia do produto nao vem de estilos ad-hoc em cada componente. Ela vem de tokens semanticos definidos em `app/globals.css`, incluindo:
-
-- cores de background, card, panel e overlay
-- cores de estado como primary, success, warning, danger e live
-- raio, sombra e tracking tipografico
-- gradientes e atmosfera dark-first do produto
-
-## Documentacao interna
-
-Antes de alterar componentes, estilos, layouts ou regras de UX, leia a documentacao em `docs/design-system/`.
-
-Pontos de entrada recomendados:
+Pontos de entrada mais importantes:
 
 - `docs/design-system/index.md`
-- `docs/design-system/01-foundations/`
-- `docs/design-system/02-components/`
-- `docs/design-system/03-product-rules/`
-- `docs/design-system/04-implementation/`
-
-Arquivos especialmente importantes:
-
 - `docs/design-system/02-components/02-primitives.md`
 - `docs/design-system/03-product-rules/01-streaming-domain.md`
 - `docs/design-system/03-product-rules/02-states-and-feedback.md`
 - `docs/design-system/04-implementation/01-code-architecture.md`
 
-## Regras de desenvolvimento desta base
+## 🛠️ Stack
 
-- use tokens semanticos em vez de hex direto
-- novos primitives interativos devem partir de `components/ui/*`
-- mantenha componentes stateless por padrao, quando possivel
-- preserve a direcao dark-first e cinematica do produto
-- trate playback, presenca, moderacao e sincronizacao como preocupacoes de primeira classe
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- shadcn/ui
+- Radix UI
 
-## Regra importante sobre Next.js
+## ❤️ Em resumo
 
-Este projeto usa uma versao de Next.js com mudancas relevantes em relacao ao que muita documentacao antiga ensina. Antes de mexer em convencoes do framework, leia o guia apropriado em:
+O Multicast nao quer ser apenas mais uma interface para assistir conteudo.
 
-```text
-node_modules/next/dist/docs/
-```
+Ele quer fazer o ato de assistir junto parecer:
 
-## Resumo
+- mais simples
+- mais bonito
+- mais sincronizado
+- mais social
+- mais memoravel
 
-Se voce abrir este repositorio esperando um produto completo, ainda nao e isso.
-
-Se voce abrir esperando uma fundacao solida para construir o Multicast com consistencia visual, acessibilidade, comportamento previsivel e linguagem propria, e exatamente isso que esta aqui.
+Este repositorio e o primeiro passo concreto nessa direcao.
