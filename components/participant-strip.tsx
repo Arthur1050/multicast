@@ -1,4 +1,5 @@
 import { Avatar } from "@/components/avatar";
+import { AvatarGroup, AvatarGroupCount } from "@/components/ui/avatar";
 import { cn } from "@/lib/cn";
 import type { HTMLAttributes } from "react";
 
@@ -18,22 +19,23 @@ export function ParticipantStrip({
 }: ParticipantStripProps) {
   return (
     <div className={cn("flex items-center", className)} {...props}>
-      <div className="flex -space-x-3">
+      <AvatarGroup className="isolate overflow-x-auto pb-1 pr-1">
         {participants.map((participant, index) => (
           <Avatar
             key={`${participant.initials}-${index}`}
             initials={participant.initials}
             status={participant.status}
+            statusAlign="bottom-left"
             size="sm"
-            className="ring-2 ring-background"
+            aria-label={`Participante ${participant.initials}`}
           />
         ))}
         {overflowCount > 0 ? (
-          <div className="inline-flex size-9 items-center justify-center rounded-full border border-border bg-secondary text-xs font-semibold text-secondary-foreground ring-2 ring-background">
+          <AvatarGroupCount className="size-9 text-xs font-semibold text-secondary-foreground shadow-soft">
             +{overflowCount}
-          </div>
+          </AvatarGroupCount>
         ) : null}
-      </div>
+      </AvatarGroup>
     </div>
   );
 }

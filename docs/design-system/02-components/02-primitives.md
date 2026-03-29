@@ -1,5 +1,11 @@
 # Primitives
 
+## Base tecnica
+
+- primitives interativos devem nascer sobre `shadcn/ui` + Radix
+- customizacao visual acontece por tokens semanticos do Multicast, nao por estilos isolados de pagina
+- wrappers em `components/*.tsx` podem manter ergonomia local, mas a fundacao de comportamento fica em `components/ui/*`
+
 ## Buttons
 
 - `primary`: iniciar, criar, entrar, confirmar
@@ -14,6 +20,7 @@
 - helper text orienta contexto
 - erro com texto, nao so cor
 - foco sempre visivel
+- selects nao usam o dropdown nativo do navegador
 
 ## Selection Controls
 
@@ -21,6 +28,7 @@
 - `Switch`: alternancia imediata de estado
 - `SegmentedControl`: escolhas exclusivas simples
 - `Tabs`: navegacao entre views ou categorias
+- hover, active e focus-visible precisam existir por padrao, sem depender da tela consumidora
 
 ## Structure
 

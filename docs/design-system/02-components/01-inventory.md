@@ -6,6 +6,11 @@ As referencias de Asana e Untitled UI documentam sistemas enormes, com centenas 
 
 ## Componentes implementados
 
+### Foundation
+
+- `components/ui/*` como camada-base `shadcn/ui` + Radix, customizada com tokens do Multicast
+- `components/*.tsx` como API publica da biblioteca e wrappers de compatibilidade para primitives e compostos
+
 ### Primitives
 
 - `Button`
@@ -44,7 +49,6 @@ As referencias de Asana e Untitled UI documentam sistemas enormes, com centenas 
 
 ## O que ainda nao foi implementado
 
-- dropdowns
 - command menu
 - pagination
 - table

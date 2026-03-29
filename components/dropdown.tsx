@@ -1,73 +1,75 @@
+"use client";
+
+import type * as React from "react";
+import { ChevronDownIcon } from "lucide-react";
+
+import {
+  DropdownMenu as DropdownMenuRoot,
+  DropdownMenuContent as DropdownMenuContentBase,
+  DropdownMenuItem as DropdownMenuItemBase,
+  DropdownMenuLabel as DropdownMenuLabelBase,
+  DropdownMenuSeparator as DropdownMenuSeparatorBase,
+  DropdownMenuTrigger as DropdownMenuTriggerBase,
+} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/cn";
-import type {
-  ButtonHTMLAttributes,
-  DetailsHTMLAttributes,
-  HTMLAttributes,
-} from "react";
 
 export function DropdownMenu({
-  className,
+  modal = false,
   ...props
-}: DetailsHTMLAttributes<HTMLDetailsElement>) {
-  return <details className={cn("group relative", className)} {...props} />;
+}: React.ComponentProps<typeof DropdownMenuRoot>) {
+  return <DropdownMenuRoot modal={modal} {...props} />;
 }
 
 export function DropdownTrigger({
   className,
   children,
   ...props
-}: HTMLAttributes<HTMLElement>) {
+}: React.ComponentProps<typeof DropdownMenuTriggerBase>) {
   return (
-    <summary
+    <DropdownMenuTriggerBase
       className={cn(
-        "inline-flex list-none cursor-pointer items-center gap-2 rounded-full border border-border-strong bg-card px-4 py-2.5 text-sm font-semibold text-card-foreground shadow-soft transition duration-200 hover:bg-panel",
+        "inline-flex items-center gap-2 rounded-full border border-border-strong bg-card px-4 py-2.5 text-sm font-semibold text-card-foreground shadow-soft transition-[background-color,border-color,color,box-shadow,opacity,transform] duration-200 outline-none cursor-pointer hover:bg-panel focus-visible:[box-shadow:var(--shadow-focus)] active:scale-[0.985] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
         className,
       )}
       {...props}
     >
       {children}
-    </summary>
+      <ChevronDownIcon className="size-4 text-muted-foreground transition-transform duration-200" />
+    </DropdownMenuTriggerBase>
   );
 }
 
-export function DropdownContent({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+export function DropdownContent({
+  className,
+  align = "end",
+  ...props
+}: React.ComponentProps<typeof DropdownMenuContentBase>) {
   return (
-    <div
-      className={cn(
-        "absolute right-0 top-[calc(100%+0.75rem)] z-20 hidden min-w-56 rounded-[calc(var(--radius)+6px)] border border-border bg-popover p-2 text-popover-foreground shadow-panel group-open:block",
-        className,
-      )}
+    <DropdownMenuContentBase
+      align={align}
+      className={className}
       {...props}
     />
   );
 }
 
-export function DropdownLabel({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={cn("px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground", className)}
-      {...props}
-    />
-  );
+export function DropdownLabel({
+  className,
+  ...props
+}: React.ComponentProps<typeof DropdownMenuLabelBase>) {
+  return <DropdownMenuLabelBase className={className} {...props} />;
 }
 
-export function DropdownSeparator({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("my-1 h-px bg-border", className)} {...props} />;
+export function DropdownSeparator({
+  className,
+  ...props
+}: React.ComponentProps<typeof DropdownMenuSeparatorBase>) {
+  return <DropdownMenuSeparatorBase className={className} {...props} />;
 }
 
 export function DropdownItem({
   className,
-  type = "button",
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      type={type}
-      className={cn(
-        "flex w-full items-center justify-between rounded-2xl px-3 py-2.5 text-left text-sm font-medium text-foreground transition duration-200 hover:bg-secondary hover:text-secondary-foreground",
-        className,
-      )}
-      {...props}
-    />
-  );
+}: React.ComponentProps<typeof DropdownMenuItemBase>) {
+  return <DropdownMenuItemBase className={cn(className)} {...props} />;
 }

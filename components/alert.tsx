@@ -5,10 +5,10 @@ type AlertTone = "info" | "success" | "warning" | "danger" | "live";
 
 const toneClasses: Record<AlertTone, string> = {
   info: "border-border-strong bg-panel text-panel-foreground",
-  success: "border-success/30 bg-success/12 text-success-foreground",
-  warning: "border-warning/30 bg-warning/16 text-warning-foreground",
-  danger: "border-danger/30 bg-danger/12 text-danger-foreground",
-  live: "border-live/30 bg-live/12 text-live-foreground",
+  success: "border-success/30 bg-success/12 text-foreground",
+  warning: "border-warning/30 bg-warning/16 text-foreground",
+  danger: "border-danger/30 bg-danger/12 text-foreground",
+  live: "border-live/30 bg-live/12 text-foreground",
 };
 
 export type AlertProps = HTMLAttributes<HTMLDivElement> & {

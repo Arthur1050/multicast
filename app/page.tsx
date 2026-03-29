@@ -142,7 +142,7 @@ export default function Page() {
             </div>
             <div className="flex flex-wrap items-center gap-4">
               <Checkbox defaultChecked aria-label="Checkbox demo" />
-              <Switch checked aria-label="Switch demo" />
+              <Switch defaultChecked aria-label="Switch demo" />
               <SegmentedControl>
                 <SegmentedControlItem active>Filmes</SegmentedControlItem>
                 <SegmentedControlItem>Series</SegmentedControlItem>
@@ -198,8 +198,8 @@ export default function Page() {
             </TabsList>
 
             <div className="flex flex-wrap items-center gap-4">
-              <DropdownMenu open>
-                <DropdownTrigger>Moderacao ▼</DropdownTrigger>
+              <DropdownMenu defaultOpen>
+                <DropdownTrigger>Moderacao</DropdownTrigger>
                 <DropdownContent>
                   <DropdownLabel>Sala atual</DropdownLabel>
                   <DropdownItem>Fixar convite</DropdownItem>
@@ -217,7 +217,7 @@ export default function Page() {
 
             <div className="relative min-h-[24rem] overflow-hidden rounded-[calc(var(--radius)+12px)] border border-border bg-background/55">
               <Modal
-                open
+                defaultOpen
                 contained
                 title="Convidar para a watch party"
                 description="Compartilhe o link ou mova pessoas especificas para o grupo de moderacao."

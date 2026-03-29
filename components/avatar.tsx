@@ -1,8 +1,15 @@
+import {
+  Avatar as AvatarRoot,
+  AvatarBadge,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
 import { cn } from "@/lib/cn";
-import type { HTMLAttributes } from "react";
+import type { ComponentProps } from "react";
 
 type AvatarSize = "sm" | "md" | "lg";
 type AvatarStatus = "offline" | "online" | "live";
+type AvatarStatusAlign = "bottom-right" | "bottom-left" | "top-right" | "top-left";
 
 const sizeClasses: Record<AvatarSize, string> = {
   sm: "size-9 text-sm",
@@ -16,35 +23,49 @@ const statusClasses: Record<AvatarStatus, string> = {
   live: "bg-live",
 };
 
-export type AvatarProps = HTMLAttributes<HTMLDivElement> & {
+const statusAlignClasses: Record<AvatarStatusAlign, string> = {
+  "bottom-right": "bottom-0 right-0",
+  "bottom-left": "bottom-0 left-0",
+  "top-right": "top-0 right-0",
+  "top-left": "top-0 left-0",
+};
+
+export type AvatarProps = ComponentProps<typeof AvatarRoot> & {
+  imageAlt?: string;
+  imageSrc?: string;
   initials: string;
   size?: AvatarSize;
   status?: AvatarStatus;
+  statusAlign?: AvatarStatusAlign;
 };
 
 export function Avatar({
   className,
+  imageAlt,
+  imageSrc,
   initials,
   size = "md",
   status = "offline",
+  statusAlign = "bottom-right",
   ...props
 }: AvatarProps) {
+  const avatarSize = size === "md" ? "default" : size;
+
   return (
-    <div className={cn("relative inline-flex shrink-0", className)} {...props}>
-      <div
-        className={cn(
-          "bg-panel text-panel-foreground inline-flex items-center justify-center rounded-full border border-border-strong font-semibold shadow-soft",
-          sizeClasses[size],
-        )}
-      >
+    <AvatarRoot
+      data-size={avatarSize}
+      className={cn(
+        "group/avatar bg-panel text-panel-foreground inline-flex items-center justify-center border border-border-strong font-semibold shadow-soft",
+        sizeClasses[size],
+        className,
+      )}
+      {...props}
+    >
+      {imageSrc ? <AvatarImage src={imageSrc} alt={imageAlt ?? initials} /> : null}
+      <AvatarFallback className="bg-panel text-panel-foreground">
         {initials}
-      </div>
-      <span
-        className={cn(
-          "absolute bottom-0 right-0 size-3.5 rounded-full border-2 border-background",
-          statusClasses[status],
-        )}
-      />
-    </div>
+      </AvatarFallback>
+      <AvatarBadge className={cn(statusClasses[status], statusAlignClasses[statusAlign])} />
+    </AvatarRoot>
   );
 }

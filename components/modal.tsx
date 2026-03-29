@@ -1,55 +1,50 @@
-import { Button } from "@/components/button";
-import { cn } from "@/lib/cn";
+"use client";
+
 import type { HTMLAttributes, ReactNode } from "react";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { cn } from "@/lib/cn";
+
 export type ModalProps = HTMLAttributes<HTMLDivElement> & {
-  open?: boolean;
+  children?: ReactNode;
   contained?: boolean;
-  title: ReactNode;
+  defaultOpen?: boolean;
   description?: ReactNode;
   footer?: ReactNode;
+  onOpenChange?: (open: boolean) => void;
+  open?: boolean;
+  title: ReactNode;
 };
 
 export function Modal({
   className,
-  open = false,
+  open,
+  defaultOpen,
   contained = false,
   title,
   description,
   footer,
   children,
+  onOpenChange,
   ...props
 }: ModalProps) {
-  if (!open) {
-    return null;
-  }
-
   return (
-    <div
-      className={cn(
-        "z-40 flex items-center justify-center bg-overlay px-4 py-10",
-        contained ? "absolute inset-0 rounded-[calc(var(--radius)+12px)]" : "fixed inset-0",
-      )}
-      {...props}
-    >
-      <div
-        className={cn(
-          "surface-noise w-full max-w-2xl rounded-[calc(var(--radius)+12px)] border border-border bg-panel p-6 shadow-float",
-          className,
-        )}
-      >
-        <div className="mb-6 flex items-start justify-between gap-4">
-          <div className="space-y-2">
-            <h3 className="font-display text-2xl font-semibold">{title}</h3>
-            {description ? <p className="text-sm text-muted-foreground">{description}</p> : null}
-          </div>
-          <Button variant="ghost" size="icon" aria-label="Fechar modal">
-            ×
-          </Button>
-        </div>
+    <Dialog defaultOpen={defaultOpen} open={open} onOpenChange={onOpenChange}>
+      <DialogContent contained={contained} className={cn(className)} {...props}>
+        <DialogHeader className="pr-12">
+          <DialogTitle>{title}</DialogTitle>
+          {description ? <DialogDescription>{description}</DialogDescription> : null}
+        </DialogHeader>
         <div className="space-y-4">{children}</div>
-        {footer ? <div className="mt-6 flex flex-wrap items-center justify-end gap-3">{footer}</div> : null}
-      </div>
-    </div>
+        {footer ? <DialogFooter>{footer}</DialogFooter> : null}
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -1,12 +1,38 @@
+import {
+  cloneElement,
+  isValidElement,
+  useId,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
+
+import {
+  FieldErrorText,
+  FieldHelperText,
+  FieldLabel,
+  FieldRoot,
+} from "@/components/ui/field";
 import { cn } from "@/lib/cn";
-import type { HTMLAttributes, ReactNode } from "react";
 
 export type FieldProps = HTMLAttributes<HTMLDivElement> & {
-  label?: ReactNode;
-  helperText?: ReactNode;
+  children?: ReactNode;
   error?: ReactNode;
+  helperText?: ReactNode;
+  label?: ReactNode;
   required?: boolean;
 };
+
+type ChildFieldProps = {
+  "aria-describedby"?: string;
+  "aria-invalid"?: boolean;
+  id?: string;
+  required?: boolean;
+};
+
+function mergeDescribedBy(existing: string | undefined, next: string | undefined) {
+  return [existing, next].filter(Boolean).join(" ") || undefined;
+}
 
 export function Field({
   className,
@@ -17,20 +43,43 @@ export function Field({
   children,
   ...props
 }: FieldProps) {
+  const generatedId = useId();
+  const controlId = `${generatedId}-control`;
+  const helperId = helperText ? `${generatedId}-helper` : undefined;
+  const errorId = error ? `${generatedId}-error` : undefined;
+  const describedBy = mergeDescribedBy(helperId, errorId);
+  const invalid = Boolean(error);
+  const resolvedControlId =
+    isValidElement<ChildFieldProps>(children) && children.props.id
+      ? children.props.id
+      : controlId;
+  let content = children;
+
+  if (isValidElement<ChildFieldProps>(children)) {
+    const child = children as ReactElement<ChildFieldProps>;
+
+    content = cloneElement(child, {
+      id: resolvedControlId,
+      required: child.props.required ?? required,
+      "aria-describedby": mergeDescribedBy(child.props["aria-describedby"], describedBy),
+      "aria-invalid": child.props["aria-invalid"] ?? (invalid || undefined),
+    });
+  }
+
   return (
-    <div className={cn("flex flex-col gap-2", className)} {...props}>
+      <FieldRoot className={cn(className)} invalid={invalid} {...props}>
       {label ? (
-        <div className="flex items-center gap-1.5 text-sm font-semibold text-foreground">
+        <FieldLabel data-invalid={invalid || undefined} htmlFor={resolvedControlId}>
           <span>{label}</span>
           {required ? <span className="text-live">*</span> : null}
-        </div>
+        </FieldLabel>
       ) : null}
-      {children}
+      {content}
       {error ? (
-        <p className="text-sm text-danger">{error}</p>
+        <FieldErrorText id={errorId}>{error}</FieldErrorText>
       ) : helperText ? (
-        <p className="text-sm text-muted-foreground">{helperText}</p>
+        <FieldHelperText id={helperId}>{helperText}</FieldHelperText>
       ) : null}
-    </div>
+    </FieldRoot>
   );
 }
